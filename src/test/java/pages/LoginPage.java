@@ -37,11 +37,13 @@ public class LoginPage extends BasePage {
 
     public void inputInUsernameField(String username){
         wait.until(ExpectedConditions.elementToBeClickable(usernameField));
+        usernameField.clear();
         usernameField.sendKeys(username);
     }
 
     public void inputInPasswordField(String password){
         wait.until(ExpectedConditions.elementToBeClickable(passwordField));
+        passwordField.clear();
         passwordField.sendKeys(password);
     }
 
