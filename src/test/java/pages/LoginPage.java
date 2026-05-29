@@ -51,4 +51,10 @@ public class LoginPage extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(loginButton));
         loginButton.click();
     }
+
+    public void login(String username, String password){
+        inputInUsernameField(username);
+        inputInPasswordField(password);
+        clickLoginButton();
+    }
 }
