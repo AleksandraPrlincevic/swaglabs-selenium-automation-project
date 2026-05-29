@@ -12,6 +12,8 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.HeaderPage;
+import pages.InventoryPage;
 import pages.LoginPage;
 
 import java.time.Duration;
@@ -29,17 +31,18 @@ public class LoginTest  extends BaseTest {
         driver.navigate().to("https://www.saucedemo.com/");
 
         loginPage = new LoginPage(driver);
-
+        inventoryPage = new InventoryPage(driver);
+        headerPage = new HeaderPage(driver);
     }
     String validUsername = "standard_user";
     String validPassword = "secret_sauce";
     String invalidUsername = "strange_user";
     String  invalidPassword = "wrong_sauce";
 
-@Test
-public void validLoginTest(){
+@Test(priority = 1)
+public void validLoginTest() {
 
-    Assert.assertEquals(loginPage.logoText.getText(), "Swag Labs");
+    Assert.assertEquals(headerPage.logoText.getText(), "Swag Labs");
 
     loginPage.inputInUsernameField(validUsername);
     loginPage.inputInPasswordField(validPassword);
@@ -51,11 +54,104 @@ public void validLoginTest(){
     String expectedURL = "https://www.saucedemo.com/inventory.html"; // neku vrstu ove asertacije smo vec imali u waitu
     Assert.assertEquals(actualURL, expectedURL);
 
+    Assert.assertTrue(headerPage.cartIcon.isDisplayed());
 
-
-
-
+    //Assert.assertTrue(inventoryPage.addToCartButtonBackpack.isDisplayed());  // sta kad item prestane da se prodaje?
+    Assert.assertEquals(inventoryPage.addToCartButton.getText(), "Add to cart");
 }
+    @Test(priority = 10)
+    public void invalidUsernameLoginTest() {
+
+        Assert.assertEquals(headerPage.logoText.getText(), "Swag Labs");
+
+        loginPage.inputInUsernameField(invalidUsername);
+        loginPage.inputInPasswordField(validPassword);
+        loginPage.clickLoginButton();
+
+
+        String actualURL = driver.getCurrentUrl();
+        String expectedURL = "https://www.saucedemo.com/";
+        Assert.assertEquals(actualURL, expectedURL);
+
+        Assert.assertTrue(loginPage.errorMessage.isDisplayed());
+
+        Assert.assertTrue(loginPage.loginButton.isDisplayed());
+    }
+
+    @Test(priority = 20)
+    public void invalidPasswordLoginTest() {
+
+        Assert.assertEquals(headerPage.logoText.getText(), "Swag Labs");
+
+        loginPage.inputInUsernameField(validUsername);
+        loginPage.inputInPasswordField(invalidPassword);
+        loginPage.clickLoginButton();
+
+
+        String actualURL = driver.getCurrentUrl();
+        String expectedURL = "https://www.saucedemo.com/";
+        Assert.assertEquals(actualURL, expectedURL);
+
+        Assert.assertTrue(loginPage.errorMessage.isDisplayed());
+
+        Assert.assertTrue(loginPage.loginButton.isDisplayed());
+    }
+    @Test(priority = 22)
+    public void emptyUsernameLoginTest() {
+
+        Assert.assertEquals(headerPage.logoText.getText(), "Swag Labs");
+
+        loginPage.inputInUsernameField("");
+        loginPage.inputInPasswordField(validPassword);
+        loginPage.clickLoginButton();
+
+
+        String actualURL = driver.getCurrentUrl();
+        String expectedURL = "https://www.saucedemo.com/";
+        Assert.assertEquals(actualURL, expectedURL);
+
+        Assert.assertTrue(loginPage.errorMessage.isDisplayed());
+
+        Assert.assertTrue(loginPage.loginButton.isDisplayed());
+    }
+    @Test(priority = 24)
+    public void emptyPasswordLoginTest() {
+
+        Assert.assertEquals(headerPage.logoText.getText(), "Swag Labs");
+
+        loginPage.inputInUsernameField(validUsername);
+        loginPage.inputInPasswordField("");
+        loginPage.clickLoginButton();
+
+
+        String actualURL = driver.getCurrentUrl();
+        String expectedURL = "https://www.saucedemo.com/";
+        Assert.assertEquals(actualURL, expectedURL);
+
+        Assert.assertTrue(loginPage.errorMessage.isDisplayed());
+
+        Assert.assertTrue(loginPage.loginButton.isDisplayed());
+    }
+
+    @Test(priority = 26)
+    public void emptyUsernameAndPasswordLoginTest() {
+
+        Assert.assertEquals(headerPage.logoText.getText(), "Swag Labs");
+
+        loginPage.inputInUsernameField("");
+        loginPage.inputInPasswordField("");
+        loginPage.clickLoginButton();
+
+
+        String actualURL = driver.getCurrentUrl();
+        String expectedURL = "https://www.saucedemo.com/";
+        Assert.assertEquals(actualURL, expectedURL);
+
+        Assert.assertTrue(loginPage.errorMessage.isDisplayed());
+
+        Assert.assertTrue(loginPage.loginButton.isDisplayed());
+    }
+
     @AfterMethod
     public void deleteCookies(){
         driver.manage().deleteAllCookies();

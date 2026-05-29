@@ -18,18 +18,19 @@ public class LoginPage extends BasePage {
 //-----------------------Lokatori-----------------------------------
 
     @FindBy(id="user-name")
-    WebElement usernameField;
+    public WebElement usernameField;
 
     @FindBy(id="password")
-    WebElement passwordField;
+    public WebElement passwordField;
 
     @FindBy(id="login-button")
-    WebElement loginButton;
+    public WebElement loginButton;
 
 // ---------------------jos Lokatora za Asertacije --------------------------
 
-    @FindBy(className = "login_logo")
-    public WebElement logoText;
+
+    @FindBy(className = "error-button")
+    public WebElement errorMessage;
 
 
     //----------------------------Metode za testiranje----------------------------
