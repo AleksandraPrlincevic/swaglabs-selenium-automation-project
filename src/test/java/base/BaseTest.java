@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeClass;
 import pages.HeaderPage;
 import pages.InventoryPage;
 import pages.LoginPage;
+import pages.SingleItemPage;
 
 public class BaseTest {
     protected WebDriver driver;
@@ -16,6 +17,8 @@ public class BaseTest {
     public LoginPage loginPage;
     public InventoryPage inventoryPage;
     public HeaderPage headerPage;
+    public SingleItemPage singleItemPage;
+
 
     @BeforeClass
     public void setUp(){
