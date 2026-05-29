@@ -22,7 +22,6 @@ import java.util.Set;
 
 public class LoginTest  extends BaseTest {
 
-
     @BeforeMethod
     public void testSetUp() {
         driver = new ChromeDriver();

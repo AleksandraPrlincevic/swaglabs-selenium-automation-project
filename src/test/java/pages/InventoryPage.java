@@ -32,6 +32,7 @@ public class InventoryPage extends BasePage {
     @FindBy(className = "inventory_item")
     public List<WebElement> inventoryItems;
 
+
     //-----------------------------------Metode za testiranje------------------
 
 
