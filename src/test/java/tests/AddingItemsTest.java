@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTest;
+import utils.TestData;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -27,7 +28,7 @@ public class AddingItemsTest extends BaseTest {
         inventoryPage = new InventoryPage(driver);
         singleItemPage = new SingleItemPage(driver);
         headerPage = new HeaderPage(driver);
-
+        loginPage.login(TestData.validUsername, TestData.validPassword);
 
     }
 

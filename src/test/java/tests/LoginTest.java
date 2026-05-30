@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTest;
+import utils.TestData;
 import org.jspecify.annotations.Nullable;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -33,18 +34,15 @@ public class LoginTest  extends BaseTest {
         inventoryPage = new InventoryPage(driver);
         headerPage = new HeaderPage(driver);
     }
-    String validUsername = "standard_user";
-    String validPassword = "secret_sauce";
-    String invalidUsername = "strange_user";
-    String  invalidPassword = "wrong_sauce";
+
 
 @Test(priority = 1)
 public void validLoginTest() {
 
     Assert.assertEquals(headerPage.logoText.getText(), "Swag Labs");
 
-    loginPage.inputInUsernameField(validUsername);
-    loginPage.inputInPasswordField(validPassword);
+    loginPage.inputInUsernameField(TestData.validUsername);
+    loginPage.inputInPasswordField(TestData.validPassword);
     loginPage.clickLoginButton();
 
     shortWait.until(ExpectedConditions.urlToBe("https://www.saucedemo.com/inventory.html"));
@@ -63,8 +61,8 @@ public void validLoginTest() {
 
         Assert.assertEquals(headerPage.logoText.getText(), "Swag Labs");
 
-        loginPage.inputInUsernameField(invalidUsername);
-        loginPage.inputInPasswordField(validPassword);
+        loginPage.inputInUsernameField(TestData.invalidUsername);
+        loginPage.inputInPasswordField(TestData.validPassword);
         loginPage.clickLoginButton();
 
 
@@ -82,8 +80,8 @@ public void validLoginTest() {
 
         Assert.assertEquals(headerPage.logoText.getText(), "Swag Labs");
 
-        loginPage.inputInUsernameField(validUsername);
-        loginPage.inputInPasswordField(invalidPassword);
+        loginPage.inputInUsernameField(TestData.validUsername);
+        loginPage.inputInPasswordField(TestData.invalidPassword);
         loginPage.clickLoginButton();
 
 
@@ -101,7 +99,7 @@ public void validLoginTest() {
         Assert.assertEquals(headerPage.logoText.getText(), "Swag Labs");
 
         loginPage.inputInUsernameField("");
-        loginPage.inputInPasswordField(validPassword);
+        loginPage.inputInPasswordField(TestData.validPassword);
         loginPage.clickLoginButton();
 
 
@@ -118,7 +116,7 @@ public void validLoginTest() {
 
         Assert.assertEquals(headerPage.logoText.getText(), "Swag Labs");
 
-        loginPage.inputInUsernameField(validUsername);
+        loginPage.inputInUsernameField(TestData.validUsername);
         loginPage.inputInPasswordField("");
         loginPage.clickLoginButton();
 
