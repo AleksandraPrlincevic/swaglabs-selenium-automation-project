@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTest;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.TestData;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -34,6 +35,7 @@ public class AddingItemsTest extends BaseTest {
 
      @Test
      public void userCanAddItemsFromSingleItemPage(){
+        shortWait.until(ExpectedConditions.elementToBeClickable(singleItemPage.addToCartButton));
         singleItemPage.clickAddToCartButton();
         headerPage.clickCartIcon();
          Assert.assertEquals(headerPage.getNumberInBadge(), 1);

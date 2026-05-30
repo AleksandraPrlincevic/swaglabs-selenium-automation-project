@@ -1,12 +1,15 @@
 package pages;
 
 import base.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class InventoryPage extends BasePage {
 
@@ -35,7 +38,22 @@ public class InventoryPage extends BasePage {
 
     //-----------------------------------Metode za testiranje------------------
 
+    //----------- metode za pronalazanje randomItem, randomAddToCartButton i click na button---------
 
 
+     public WebElement getRandomItem(){
+        Random randomIndex = new Random();
+        int index = randomIndex.nextInt(inventoryItems.size());
+        return  inventoryItems.get(index);
+     }
+     public WebElement getRandomAddToCartButton(){
+         WebElement randomItem = getRandomItem();
+         return randomItem.findElement(By.cssSelector(".btn.btn_primary.btn_small.btn_inventory"));
+     }
+     public void clickRandomAddToCartButton(){
+         WebElement button = getRandomAddToCartButton();
+         wait.until(ExpectedConditions.elementToBeClickable(button));
+       button.click();
+     }
 
 }
