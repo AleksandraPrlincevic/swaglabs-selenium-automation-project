@@ -49,7 +49,7 @@ public class InventoryPage extends BasePage {
         randomItem = inventoryItems.get(index);
         return  randomItem;
      }
-     public WebElement getRandomAddToCartButton(){
+    /* public WebElement getRandomAddToCartButton(){
          randomItem = getRandomItem();
          return randomItem.findElement(By.cssSelector(".btn.btn_primary.btn_small.btn_inventory"));
      }
@@ -64,5 +64,5 @@ public class InventoryPage extends BasePage {
           } else{
               randomItemLink = randomItem.findElement(By.className("inventory_item_label"));
           }return randomItemLink;
-     }
+     }*/
 }

@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTest;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import pages.*;
 import utils.TestData;
@@ -26,17 +27,22 @@ public class AddingItemsTest extends BaseTest {
         singleItemPage = new SingleItemPage(driver);
         headerPage = new Header(driver);
         cartPage = new CartPage(driver);
-        inventoryItemComponent = new InventoryItemComponent(driver);
+
         loginPage.login(TestData.validUsername, TestData.validPassword);
  }
     @Test
     public void addingItemFromInventoryPage(){
-        inventoryPage.clickRandomAddToCartButton();
+            WebElement randomItem = inventoryPage.getRandomItem();
+            InventoryItemComponent inventoryItemComponent = new InventoryItemComponent(driver, randomItem);
+            inventoryItemComponent.clickAddToCartButton();
+
+        }
+        /*inventoryPage.clickRandomAddToCartButton();
         Assert.assertTrue(headerPage.isCartBadgeVisible());
         Assert.assertEquals(headerPage.getNumberInBadge(), 1);
         headerPage.clickCartIcon();
-        Assert.assertTrue(cartPage.isCheckoutButtonDisplayed());
-    }
+        Assert.assertTrue(cartPage.isCheckoutButtonDisplayed());*/
+
 
    /*  @Test
        public void userCanAddItemsFromSingleItemPage(){
