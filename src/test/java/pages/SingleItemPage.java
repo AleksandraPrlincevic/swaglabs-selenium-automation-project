@@ -23,10 +23,10 @@ public class SingleItemPage extends BasePage {
     @FindBy(id="back-to-products")
     public WebElement backToProductsLink;
 
-    @FindBy(className = "inventory_item_name")
+    @FindBy(css = ".inventory_details_name.large_size")
     WebElement singleItemName;
 
-    @FindBy(className ="inventory_item_price")
+    @FindBy(className ="inventory_details_price")
     WebElement singleItemPrice;
 
  //---------------------------------Metode za testiranje--------------------

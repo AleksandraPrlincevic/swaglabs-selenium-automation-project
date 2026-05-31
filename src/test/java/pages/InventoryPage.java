@@ -40,6 +40,7 @@ public class InventoryPage extends BasePage {
     //-----------------------------------Metode za testiranje------------------
 
     //----------- metode za pronalazanje randomItem, randomAddToCartButton i click na button---------
+
       WebElement randomItem;
       WebElement randomItemLink;
 

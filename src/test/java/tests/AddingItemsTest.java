@@ -31,38 +31,44 @@ public class AddingItemsTest extends BaseTest {
 
         loginPage.login(TestData.validUsername, TestData.validPassword);
  }
-    @Test
+    @Test(priority = 1)
     public void addOneItemFromInventoryPage() throws InterruptedException {
 
-        Assert.assertTrue(!inventoryPage.inventoryItems.isEmpty());
+           Assert.assertTrue(!inventoryPage.inventoryItems.isEmpty());
         WebElement randomItem = inventoryPage.getRandomItem();
         InventoryItemComponent inventoryItemComponent = new InventoryItemComponent(driver, randomItem);
-        String itemName = inventoryItemComponent.getItemName();
-        String itemPrice =inventoryItemComponent.getItemPrice();
+           String itemName = inventoryItemComponent.getItemName();
+           String itemPrice =inventoryItemComponent.getItemPrice();
         inventoryItemComponent.clickAddToCartButton();
 
-        Assert.assertTrue(headerPage.isCartBadgeVisible());
-        Assert.assertEquals(headerPage.getNumberInBadge(), 1);
+           Assert.assertTrue(headerPage.isCartBadgeVisible());
+           Assert.assertEquals(headerPage.getNumberInBadge(), 1);
         headerPage.clickCartIcon();
-        Assert.assertTrue(cartPage.isCheckoutButtonDisplayed());
+           Assert.assertTrue(cartPage.isCheckoutButtonDisplayed());
         System.out.println("EXPECTED: " + itemName);
         System.out.println("ACTUAL: " + cartPage.getItemInCartName());
-        Assert.assertEquals(cartPage.getItemInCartName(), itemName);
-        Assert.assertEquals(cartPage.getItemInCartPrice(), itemPrice);
+           Assert.assertEquals(cartPage.getItemInCartName(), itemName);
+           Assert.assertEquals(cartPage.getItemInCartPrice(), itemPrice);
 
     }
 
-      @Test
+      @Test(priority = 5)
        public void addItemFromSingleItemPage(){
-        Assert.assertTrue(!inventoryPage.inventoryItems.isEmpty());
+           Assert.assertTrue(!inventoryPage.inventoryItems.isEmpty());
         WebElement randomItem = inventoryPage.getRandomItem();
-        InventoryItemComponent inventoryItemComponent1 = new InventoryItemComponent(driver, randomItem);
-        inventoryItemComponent1.clickItemNameLink();
+        InventoryItemComponent inventoryItemComponent = new InventoryItemComponent(driver, randomItem);
+           String itemName = inventoryItemComponent.getItemName();
+           String itemPrice =inventoryItemComponent.getItemPrice();
+        inventoryItemComponent.clickItemNameLink();
         shortWait.until(ExpectedConditions.elementToBeClickable(singleItemPage.addToCartButton));
-        Assert .assertEquals(singleItemPage);
+           Assert .assertEquals(singleItemPage.getSingleItemName(), itemName);
+           Assert .assertEquals(singleItemPage.getSingleItemPrice(), itemPrice);
         singleItemPage.clickAddToCartButton();
-        Assert.assertEquals(headerPage.getNumberInBadge(), 1);
+           Assert.assertEquals(headerPage.getNumberInBadge(), 1);
         headerPage.clickCartIcon();
+           Assert.assertTrue(cartPage.isCheckoutButtonDisplayed());
+           Assert.assertEquals(cartPage.getItemInCartName(), itemName);
+           Assert.assertEquals(cartPage.getItemInCartPrice(), itemPrice);
      }
 
     @AfterMethod
