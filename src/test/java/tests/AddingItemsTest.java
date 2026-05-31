@@ -59,6 +59,7 @@ public class AddingItemsTest extends BaseTest {
         InventoryItemComponent inventoryItemComponent1 = new InventoryItemComponent(driver, randomItem);
         inventoryItemComponent1.clickItemNameLink();
         shortWait.until(ExpectedConditions.elementToBeClickable(singleItemPage.addToCartButton));
+        Assert .assertEquals(singleItemPage);
         singleItemPage.clickAddToCartButton();
         Assert.assertEquals(headerPage.getNumberInBadge(), 1);
         headerPage.clickCartIcon();

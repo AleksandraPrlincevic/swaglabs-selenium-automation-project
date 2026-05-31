@@ -23,6 +23,12 @@ public class SingleItemPage extends BasePage {
     @FindBy(id="back-to-products")
     public WebElement backToProductsLink;
 
+    @FindBy(className = "inventory_item_name")
+    WebElement singleItemName;
+
+    @FindBy(className ="inventory_item_price")
+    WebElement singleItemPrice;
+
  //---------------------------------Metode za testiranje--------------------
 
     public void clickAddToCartButton(){
@@ -34,5 +40,11 @@ public class SingleItemPage extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(removeButton));
         removeButton.click();
     }
+    public String getSingleItemName(){
+        return singleItemName.getText();
+    }
 
+    public String getSingleItemPrice(){
+        return singleItemPrice.getText();
+    }
 }
