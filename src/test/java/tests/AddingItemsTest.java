@@ -3,6 +3,7 @@ package tests;
 import base.BaseTest;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.*;
 import utils.TestData;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -20,7 +21,7 @@ public class AddingItemsTest extends BaseTest {
         driver = new FirefoxDriver();
         shortWait = new WebDriverWait(driver, Duration.ofSeconds(5));
         driver.manage().window().maximize();
-        driver.navigate().to("https://www.saucedemo.com/");  //PROMENITI I VIDI MANUELNI ODAKLE JE NAJBOLJE KRENUTI
+        driver.navigate().to("https://www.saucedemo.com/");  //VIDI MANUELNI ODAKLE KRECE
 
         loginPage = new LoginPage(driver);
         inventoryPage = new InventoryPage(driver);
@@ -31,7 +32,7 @@ public class AddingItemsTest extends BaseTest {
         loginPage.login(TestData.validUsername, TestData.validPassword);
  }
     @Test
-    public void addingItemFromInventoryPage() throws InterruptedException {
+    public void addOneItemFromInventoryPage() throws InterruptedException {
 
         Assert.assertTrue(!inventoryPage.inventoryItems.isEmpty());
         WebElement randomItem = inventoryPage.getRandomItem();
@@ -49,20 +50,19 @@ public class AddingItemsTest extends BaseTest {
         Assert.assertEquals(cartPage.getItemInCartName(), itemName);
         Assert.assertEquals(cartPage.getItemInCartPrice(), itemPrice);
 
-        /*inventoryPage.clickRandomAddToCartButton();
-        Assert.assertTrue(headerPage.isCartBadgeVisible());
-        Assert.assertEquals(headerPage.getNumberInBadge(), 1);
-        headerPage.clickCartIcon();
-        Assert.assertTrue(cartPage.isCheckoutButtonDisplayed());*/
     }
 
-   /*  @Test
-       public void userCanAddItemsFromSingleItemPage(){
+      @Test
+       public void addItemFromSingleItemPage(){
+        Assert.assertTrue(!inventoryPage.inventoryItems.isEmpty());
+        WebElement randomItem = inventoryPage.getRandomItem();
+        InventoryItemComponent inventoryItemComponent1 = new InventoryItemComponent(driver, randomItem);
+        inventoryItemComponent1.clickItemNameLink();
         shortWait.until(ExpectedConditions.elementToBeClickable(singleItemPage.addToCartButton));
         singleItemPage.clickAddToCartButton();
+        Assert.assertEquals(headerPage.getNumberInBadge(), 1);
         headerPage.clickCartIcon();
-         Assert.assertEquals(headerPage.getNumberInBadge(), 1);
-     }*/
+     }
 
     @AfterMethod
     public void deleteCookies(){
