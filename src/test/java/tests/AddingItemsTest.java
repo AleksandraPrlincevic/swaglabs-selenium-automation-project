@@ -31,18 +31,29 @@ public class AddingItemsTest extends BaseTest {
         loginPage.login(TestData.validUsername, TestData.validPassword);
  }
     @Test
-    public void addingItemFromInventoryPage(){
-            WebElement randomItem = inventoryPage.getRandomItem();
-            InventoryItemComponent inventoryItemComponent = new InventoryItemComponent(driver, randomItem);
-            inventoryItemComponent.clickAddToCartButton();
+    public void addingItemFromInventoryPage() throws InterruptedException {
 
-        }
+        Assert.assertTrue(!inventoryPage.inventoryItems.isEmpty());
+        WebElement randomItem = inventoryPage.getRandomItem();
+        InventoryItemComponent inventoryItemComponent = new InventoryItemComponent(driver, randomItem);
+        String itemName = inventoryItemComponent.getItemName();
+        inventoryItemComponent.clickAddToCartButton();
+
+        Assert.assertTrue(headerPage.isCartBadgeVisible());
+        Assert.assertEquals(headerPage.getNumberInBadge(), 1);
+        headerPage.clickCartIcon();
+        Assert.assertTrue(cartPage.isCheckoutButtonDisplayed());
+        System.out.println("EXPECTED: " + itemName);
+        System.out.println("ACTUAL: " + cartPage.getItemInCartName());
+        Assert.assertEquals(cartPage.getItemInCartName(), itemName);
+
+
         /*inventoryPage.clickRandomAddToCartButton();
         Assert.assertTrue(headerPage.isCartBadgeVisible());
         Assert.assertEquals(headerPage.getNumberInBadge(), 1);
         headerPage.clickCartIcon();
         Assert.assertTrue(cartPage.isCheckoutButtonDisplayed());*/
-
+    }
 
    /*  @Test
        public void userCanAddItemsFromSingleItemPage(){

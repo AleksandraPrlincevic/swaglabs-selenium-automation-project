@@ -17,10 +17,16 @@ public class CartPage extends BasePage {
 
     @FindBy(id="checkout")
     WebElement checkoutButton;
+
+    @FindBy(className = "inventory_item_name")
+    WebElement itemInCartName;
+
  //----------------------Metode za testiranje-----------------
     public boolean isCheckoutButtonDisplayed(){
        return checkoutButton.isDisplayed();
     }
 
-
+    public String getItemInCartName(){
+        return itemInCartName.getText();
+    }
 }

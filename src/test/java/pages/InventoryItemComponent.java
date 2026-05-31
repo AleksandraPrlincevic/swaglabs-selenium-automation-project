@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import javax.swing.plaf.PanelUI;
+
 public class InventoryItemComponent extends BasePage {
     private WebElement root;
 
@@ -16,7 +18,7 @@ public class InventoryItemComponent extends BasePage {
     //------------------------------Lokatori--------------------------
 
     WebElement addToCartButton = root.findElement(By.cssSelector(".btn.btn_primary.btn_small.btn_inventory"));
-    WebElement linkName = root.findElement(By.className("inventory_item_label"));
+    WebElement itemNameLink = root.findElement(By.className("inventory_item_name"));
 
     //------------------------------Metode za testiranje------------------------------------
 
@@ -24,4 +26,13 @@ public class InventoryItemComponent extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
         addToCartButton.click();
     }
+    public void clickItemNameLink(){
+        wait.until(ExpectedConditions.elementToBeClickable(itemNameLink));
+        itemNameLink.click();
+    }
+    public String getItemName(){
+        //wait.until(ExpectedConditions.elementToBeClickable(itemNameLink));
+        return itemNameLink.getText();
+    }
+
 }
