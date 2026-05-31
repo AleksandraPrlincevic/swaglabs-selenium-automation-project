@@ -2,10 +2,6 @@ package tests;
 
 import base.BaseTest;
 import utils.TestData;
-import org.jspecify.annotations.Nullable;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,13 +9,11 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.HeaderPage;
+import pages.Header;
 import pages.InventoryPage;
 import pages.LoginPage;
 
 import java.time.Duration;
-import java.util.List;
-import java.util.Set;
 
 public class LoginTest  extends BaseTest {
 
@@ -32,7 +26,7 @@ public class LoginTest  extends BaseTest {
 
         loginPage = new LoginPage(driver);
         inventoryPage = new InventoryPage(driver);
-        headerPage = new HeaderPage(driver);
+        headerPage = new Header(driver);
     }
 
 

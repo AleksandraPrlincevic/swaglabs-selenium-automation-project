@@ -3,7 +3,6 @@ package base;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import pages.*;
 
@@ -13,10 +12,10 @@ public class BaseTest {
 
     public LoginPage loginPage;
     public InventoryPage inventoryPage;
-    public HeaderPage headerPage;
+    public Header headerPage;
     public SingleItemPage singleItemPage;
     public CartPage cartPage;
-
+    public InventoryItemComponent inventoryItemComponent;
     @BeforeClass
     public void setUp(){
         WebDriverManager.firefoxdriver().setup();

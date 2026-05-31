@@ -1,14 +1,9 @@
 package tests;
 
 import base.BaseTest;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.*;
 import utils.TestData;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -29,8 +24,9 @@ public class AddingItemsTest extends BaseTest {
         loginPage = new LoginPage(driver);
         inventoryPage = new InventoryPage(driver);
         singleItemPage = new SingleItemPage(driver);
-        headerPage = new HeaderPage(driver);
+        headerPage = new Header(driver);
         cartPage = new CartPage(driver);
+        inventoryItemComponent = new InventoryItemComponent(driver);
         loginPage.login(TestData.validUsername, TestData.validPassword);
  }
     @Test
