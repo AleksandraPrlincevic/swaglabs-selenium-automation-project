@@ -20,7 +20,7 @@ public class InventoryItemComponent extends BasePage {
     WebElement addToCartButton = root.findElement(By.cssSelector(".btn.btn_primary.btn_small.btn_inventory"));
     WebElement itemNameLink = root.findElement(By.className("inventory_item_name"));
     WebElement itemImage =root.findElement(By.className("inventory_item_img"));
-
+    WebElement itemPrice = root.findElement(By.className("inventory_item_price"));
     //------------------------------Metode za testiranje------------------------------------
 
     public void clickAddToCartButton() {
@@ -35,8 +35,12 @@ public class InventoryItemComponent extends BasePage {
         //wait.until(ExpectedConditions.elementToBeClickable(itemNameLink));
         return itemNameLink.getText();
     }
-    public String getItemImageSrc(){
+   /*public String getItemImageSrc(){     //ovo mi ne treba za asertaciju ovde
         return itemImage.getAttribute("src");
+    }*/
+
+    public String getItemPrice(){
+        return itemPrice.getText();
     }
 
 }

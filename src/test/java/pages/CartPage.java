@@ -21,6 +21,9 @@ public class CartPage extends BasePage {
     @FindBy(className = "inventory_item_name")
     WebElement itemInCartName;
 
+    @FindBy(className ="inventory_item_price") // Za CartPage ce morati takodje da se uradi lista ubacenih itema
+    WebElement itemInCartPrice;
+
  //----------------------Metode za testiranje-----------------
     public boolean isCheckoutButtonDisplayed(){
        return checkoutButton.isDisplayed();
@@ -28,5 +31,9 @@ public class CartPage extends BasePage {
 
     public String getItemInCartName(){
         return itemInCartName.getText();
+    }
+
+    public String getItemInCartPrice(){
+        return itemInCartPrice.getText();
     }
 }

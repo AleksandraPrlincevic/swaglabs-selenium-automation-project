@@ -37,7 +37,7 @@ public class AddingItemsTest extends BaseTest {
         WebElement randomItem = inventoryPage.getRandomItem();
         InventoryItemComponent inventoryItemComponent = new InventoryItemComponent(driver, randomItem);
         String itemName = inventoryItemComponent.getItemName();
-        String itemImageSrc = inventoryItemComponent.getItemImageSrc();
+        String itemPrice =inventoryItemComponent.getItemPrice();
         inventoryItemComponent.clickAddToCartButton();
 
         Assert.assertTrue(headerPage.isCartBadgeVisible());
@@ -47,7 +47,7 @@ public class AddingItemsTest extends BaseTest {
         System.out.println("EXPECTED: " + itemName);
         System.out.println("ACTUAL: " + cartPage.getItemInCartName());
         Assert.assertEquals(cartPage.getItemInCartName(), itemName);
-
+        Assert.assertEquals(cartPage.getItemInCartPrice(), itemPrice);
 
         /*inventoryPage.clickRandomAddToCartButton();
         Assert.assertTrue(headerPage.isCartBadgeVisible());
