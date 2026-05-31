@@ -17,7 +17,10 @@ public class CartPage extends BasePage {
 
     @FindBy(id="checkout")
     WebElement checkoutButton;
-
+ //----------------------Metode za testiranje-----------------
+    public boolean isCheckoutButtonDisplayed(){
+       return checkoutButton.isDisplayed();
+    }
 
 
 }

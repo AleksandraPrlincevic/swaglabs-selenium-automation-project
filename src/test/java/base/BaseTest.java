@@ -5,10 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import pages.HeaderPage;
-import pages.InventoryPage;
-import pages.LoginPage;
-import pages.SingleItemPage;
+import pages.*;
 
 public class BaseTest {
     protected WebDriver driver;
@@ -18,11 +15,11 @@ public class BaseTest {
     public InventoryPage inventoryPage;
     public HeaderPage headerPage;
     public SingleItemPage singleItemPage;
-
+    public CartPage cartPage;
 
     @BeforeClass
     public void setUp(){
-        WebDriverManager.chromedriver().setup();
+        WebDriverManager.firefoxdriver().setup();
     }
 
  /*   @AfterClass

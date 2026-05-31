@@ -32,7 +32,9 @@ public class HeaderPage extends BasePage {
 
     public void clickCartIcon(){
         wait.until(ExpectedConditions.elementToBeClickable(cartIcon));
+        cartIcon.click();
     }
+
     public void clickBurgerMenu(){
         wait.until(ExpectedConditions.elementToBeClickable(burgerMenu));
         burgerMenu.click();
