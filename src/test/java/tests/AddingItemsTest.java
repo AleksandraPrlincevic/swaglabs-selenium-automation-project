@@ -37,6 +37,7 @@ public class AddingItemsTest extends BaseTest {
         WebElement randomItem = inventoryPage.getRandomItem();
         InventoryItemComponent inventoryItemComponent = new InventoryItemComponent(driver, randomItem);
         String itemName = inventoryItemComponent.getItemName();
+        String itemImageSrc = inventoryItemComponent.getItemImageSrc();
         inventoryItemComponent.clickAddToCartButton();
 
         Assert.assertTrue(headerPage.isCartBadgeVisible());

@@ -19,6 +19,7 @@ public class InventoryItemComponent extends BasePage {
 
     WebElement addToCartButton = root.findElement(By.cssSelector(".btn.btn_primary.btn_small.btn_inventory"));
     WebElement itemNameLink = root.findElement(By.className("inventory_item_name"));
+    WebElement itemImage =root.findElement(By.className("inventory_item_img"));
 
     //------------------------------Metode za testiranje------------------------------------
 
@@ -33,6 +34,9 @@ public class InventoryItemComponent extends BasePage {
     public String getItemName(){
         //wait.until(ExpectedConditions.elementToBeClickable(itemNameLink));
         return itemNameLink.getText();
+    }
+    public String getItemImageSrc(){
+        return itemImage.getAttribute("src");
     }
 
 }
