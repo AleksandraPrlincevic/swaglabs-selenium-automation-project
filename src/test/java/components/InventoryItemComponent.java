@@ -1,12 +1,10 @@
-package pages;
+package components;
 
 import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import javax.swing.plaf.PanelUI;
 
 public class InventoryItemComponent extends BasePage {
     private WebElement root;

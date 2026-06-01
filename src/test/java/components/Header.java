@@ -1,4 +1,4 @@
-package pages;
+package components;
 
 import base.BasePage;
 import org.openqa.selenium.By;
@@ -41,13 +41,13 @@ public class Header extends BasePage {
     }
 
     public boolean isCartBadgeVisible(){
-        cartBadge = driver.findElements(By.className("shopping_cart_badge"));
+        cartBadge = driver.findElements(By.className("shopping_cart_badge"));  // Pravimo ga kao listu uz findElementssssss zato sto nije uvek prisutan
         return !cartBadge.isEmpty();
     }
 
     public int getNumberInBadge(){
         int integer;
-        cartBadge = driver.findElements(By.className("shopping_cart_badge")); // Pravimo ga kao listu uz findElementssssss
+        cartBadge = driver.findElements(By.className("shopping_cart_badge")); // Pravimo ga kao listu uz findElementssssss zato sto nije uvek prisutan
         if(isCartBadgeVisible()){
             return integer = Integer.parseInt(cartBadge.get(0).getText());
         } else{

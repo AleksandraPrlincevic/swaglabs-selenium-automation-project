@@ -9,7 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.Header;
+import components.Header;
 import pages.InventoryPage;
 import pages.LoginPage;
 

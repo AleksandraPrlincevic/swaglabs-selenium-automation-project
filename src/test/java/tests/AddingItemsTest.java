@@ -1,6 +1,8 @@
 package tests;
 
 import base.BaseTest;
+import components.Header;
+import components.InventoryItemComponent;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
