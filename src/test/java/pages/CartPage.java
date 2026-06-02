@@ -47,4 +47,7 @@ public class CartPage extends BasePage {
                  getRemoveButtons().get(0).click();
         }
     }
+    public void clickCheckoutButton(){
+        checkoutButton.click();
+    }
 }

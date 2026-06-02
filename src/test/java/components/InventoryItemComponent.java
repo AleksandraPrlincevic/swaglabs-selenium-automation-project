@@ -13,7 +13,7 @@ public class InventoryItemComponent extends BasePage {
         super(driver);
         this.root = root;
     }
-    //------------------------------get metode sa Lokatorima--------------------------
+    //------------------------------get metode sa Lokatorimai--------------------------
 
     public WebElement getAddToCartButton(){
         return root.findElement(By.cssSelector(".btn.btn_primary.btn_small.btn_inventory"));

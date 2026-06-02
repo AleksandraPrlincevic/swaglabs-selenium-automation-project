@@ -53,6 +53,9 @@ public class InventoryPage extends BasePage {
           randomItem = getInventoryItems().get(index);
           return  randomItem;
      }
+
+
+
     /* public WebElement getRandomAddToCartButton(){
          randomItem = getRandomItem();
          return randomItem.findElement(By.cssSelector(".btn.btn_primary.btn_small.btn_inventory"));
