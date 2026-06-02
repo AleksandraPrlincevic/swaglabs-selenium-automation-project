@@ -47,7 +47,7 @@ public class Header extends BasePage {
 
     public int getNumberInBadge(){
         int integer;
-        cartBadge = driver.findElements(By.className("shopping_cart_badge")); // Pravimo ga kao listu uz findElementssssss zato sto nije uvek prisutan
+        cartBadge = driver.findElements(By.className("shopping_cart_badge")); // Pravimo ga kao listu uz findElementssssss i zato sto je unutar metode najsveziji DOM
         if(isCartBadgeVisible()){
             return integer = Integer.parseInt(cartBadge.get(0).getText());
         } else{

@@ -15,25 +15,36 @@ public class CartPage extends BasePage {
 
     //-----------------------Lokatori-------------------------------
 
-    @FindBy(id="checkout")
+    @FindBy(id = "checkout")
     WebElement checkoutButton;
 
     @FindBy(className = "inventory_item_name")
     WebElement itemInCartName;
 
-    @FindBy(className ="inventory_item_price") // Za CartPage ce morati takodje da se uradi lista ubacenih itema
+    @FindBy(className = "inventory_item_price") // Za CartPage ce morati takodje da se uradi lista ubacenih itema
     WebElement itemInCartPrice;
-
- //----------------------Metode za testiranje-----------------
-    public boolean isCheckoutButtonDisplayed(){
-       return checkoutButton.isDisplayed();
+ //-------------get metode sa lokatorima---------------------------
+    public List<WebElement> getRemoveButtons(){
+      return  driver.findElements(By.cssSelector(".btn.btn_secondary.btn_small.cart_button"));
     }
 
-    public String getItemInCartName(){
+    //----------------------Metode za testiranje-----------------
+
+    public boolean isCheckoutButtonDisplayed() {
+        return checkoutButton.isDisplayed();
+    }
+
+    public String getItemInCartName() {
         return itemInCartName.getText();
     }
 
-    public String getItemInCartPrice(){
+    public String getItemInCartPrice() {
         return itemInCartPrice.getText();
+    }
+
+    public void removeAllItemsFromCart() {
+        while(!getRemoveButtons().isEmpty()) {
+                 getRemoveButtons().get(0).click();
+        }
     }
 }

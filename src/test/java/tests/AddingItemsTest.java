@@ -36,19 +36,19 @@ public class AddingItemsTest extends BaseTest {
     @Test(priority = 1)
     public void addOneItemFromInventoryPage() throws InterruptedException {
 
-           Assert.assertTrue(!inventoryPage.inventoryItems.isEmpty());
-        WebElement randomItem = inventoryPage.getRandomItem();
-        InventoryItemComponent inventoryItemComponent = new InventoryItemComponent(driver, randomItem);
+         Assert.assertFalse(inventoryPage.getInventoryItems().isEmpty());
+         Assert.assertFalse(headerPage.isCartBadgeVisible());
+         WebElement randomItem = inventoryPage.getRandomItem();
+         inventoryItemComponent = new InventoryItemComponent(driver, randomItem);
            String itemName = inventoryItemComponent.getItemName();
            String itemPrice =inventoryItemComponent.getItemPrice();
-        inventoryItemComponent.clickAddToCartButton();
-
+         inventoryItemComponent.clickAddToCartButton();
            Assert.assertTrue(headerPage.isCartBadgeVisible());
            Assert.assertEquals(headerPage.getNumberInBadge(), 1);
         headerPage.clickCartIcon();
            Assert.assertTrue(cartPage.isCheckoutButtonDisplayed());
-        System.out.println("EXPECTED: " + itemName);
-        System.out.println("ACTUAL: " + cartPage.getItemInCartName());
+           System.out.println("EXPECTED: " + itemName);
+           System.out.println("ACTUAL: " + cartPage.getItemInCartName());
            Assert.assertEquals(cartPage.getItemInCartName(), itemName);
            Assert.assertEquals(cartPage.getItemInCartPrice(), itemPrice);
 
@@ -56,7 +56,7 @@ public class AddingItemsTest extends BaseTest {
 
       @Test(priority = 5)
        public void addItemFromSingleItemPage(){
-           Assert.assertTrue(!inventoryPage.inventoryItems.isEmpty());
+           Assert.assertTrue(!inventoryPage.getInventoryItems().isEmpty());
         WebElement randomItem = inventoryPage.getRandomItem();
         InventoryItemComponent inventoryItemComponent = new InventoryItemComponent(driver, randomItem);
            String itemName = inventoryItemComponent.getItemName();

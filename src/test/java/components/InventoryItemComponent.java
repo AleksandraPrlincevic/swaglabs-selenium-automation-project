@@ -13,32 +13,39 @@ public class InventoryItemComponent extends BasePage {
         super(driver);
         this.root = root;
     }
-    //------------------------------Lokatori--------------------------
+    //------------------------------get metode sa Lokatorima--------------------------
 
-    WebElement addToCartButton = root.findElement(By.cssSelector(".btn.btn_primary.btn_small.btn_inventory"));
-    WebElement itemNameLink = root.findElement(By.className("inventory_item_name"));
+    public WebElement getAddToCartButton(){
+        return root.findElement(By.cssSelector(".btn.btn_primary.btn_small.btn_inventory"));
+    }
+    public WebElement getItemNameLink(){
+        return root.findElement(By.className("inventory_item_name"));
+    }
     WebElement itemImage =root.findElement(By.className("inventory_item_img"));
-    WebElement itemPrice = root.findElement(By.className("inventory_item_price"));
+
+    public WebElement getItemPriceBox(){
+        return root.findElement(By.className("inventory_item_price"));
+    }
     //------------------------------Metode za testiranje------------------------------------
 
     public void clickAddToCartButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
-        addToCartButton.click();
+        wait.until(ExpectedConditions.elementToBeClickable(getAddToCartButton()));
+        getAddToCartButton().click();
     }
     public void clickItemNameLink(){
-        wait.until(ExpectedConditions.elementToBeClickable(itemNameLink));
-        itemNameLink.click();
+        wait.until(ExpectedConditions.elementToBeClickable(getItemNameLink()));
+        getItemNameLink().click();
     }
     public String getItemName(){
         //wait.until(ExpectedConditions.elementToBeClickable(itemNameLink));
-        return itemNameLink.getText();
+        return getItemNameLink().getText();
     }
    /*public String getItemImageSrc(){     //ovo mi ne treba za asertaciju ovde
         return itemImage.getAttribute("src");
     }*/
 
     public String getItemPrice(){
-        return itemPrice.getText();
+        return getItemPriceBox().getText();
     }
 
 }

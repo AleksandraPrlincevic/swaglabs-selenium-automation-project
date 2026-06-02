@@ -33,22 +33,25 @@ public class InventoryPage extends BasePage {
     @FindBy(id = "inventory_container")
     public WebElement inventoryContainer;
 
-    @FindBy(className = "inventory_item")
-    public List<WebElement> inventoryItems;
 
-
-    //-----------------------------------Metode za testiranje------------------
-
-    //----------- metode za pronalazanje randomItem, randomAddToCartButton i click na button---------
+    //-----------------------------------Metode za testiranje---------------
+    //----metode za pronalazanje randomItem(sada randomAddToCartButton,ostale elemente, metode vezane uz njih pravimo u novoj klasi InventoryItemComponent-----
 
       WebElement randomItem;
       WebElement randomItemLink;
 
+      public  List<WebElement> getInventoryItems(){
+
+          return driver.findElements(By.className("inventory_item"));
+      }
+
       public WebElement getRandomItem(){
-        Random randomIndex = new Random();
-        int index = randomIndex.nextInt(inventoryItems.size());
-        randomItem = inventoryItems.get(index);
-        return  randomItem;
+          Random randomIndex = new Random();
+          int index = randomIndex.nextInt(getInventoryItems().size());
+          System.out.println("RANDOM INDEX = " + index);
+          System.out.println("SIZE = " + getInventoryItems().size());
+          randomItem = getInventoryItems().get(index);
+          return  randomItem;
      }
     /* public WebElement getRandomAddToCartButton(){
          randomItem = getRandomItem();
