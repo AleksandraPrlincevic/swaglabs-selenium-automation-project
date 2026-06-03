@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTest;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import utils.TestData;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -19,7 +20,7 @@ public class LoginTest  extends BaseTest {
 
     @BeforeMethod
     public void testSetUp() {
-        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
         shortWait = new WebDriverWait(driver, Duration.ofSeconds(5));
         driver.manage().window().maximize();
         driver.navigate().to("https://www.saucedemo.com/");

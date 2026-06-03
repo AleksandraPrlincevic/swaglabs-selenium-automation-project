@@ -51,12 +51,11 @@ public class AddingItemsTest extends BaseTest {
            System.out.println("ACTUAL: " + cartPage.getItemInCartName());
            Assert.assertEquals(cartPage.getItemInCartName(), itemName);
            Assert.assertEquals(cartPage.getItemInCartPrice(), itemPrice);
-
     }
 
       @Test(priority = 5)
        public void addItemFromSingleItemPage(){
-           Assert.assertTrue(!inventoryPage.getInventoryItems().isEmpty());
+           Assert.assertFalse(inventoryPage.getInventoryItems().isEmpty());
         WebElement randomItem = inventoryPage.getRandomItem();
         InventoryItemComponent inventoryItemComponent = new InventoryItemComponent(driver, randomItem);
            String itemName = inventoryItemComponent.getItemName();

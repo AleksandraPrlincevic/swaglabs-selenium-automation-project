@@ -26,6 +26,8 @@ public class Header extends BasePage {
     @FindBy(id="react-burger-menu-btn")
     public WebElement burgerMenu;
 
+   // @FindBy(className = "title")
+
  //-----------------------------------Metode za testiranja-----------------------
 
 
@@ -53,6 +55,10 @@ public class Header extends BasePage {
         } else{
             return 0;
         }
+    }
+
+    public String getPageTitle(){
+        return driver.findElement(By.className("title")).getText();
     }
 
 }

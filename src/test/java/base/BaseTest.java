@@ -19,6 +19,9 @@ public class BaseTest {
     public CartPage cartPage;
     public InventoryItemComponent inventoryItemComponent;
     public CheckoutStepOnePage checkoutStepOnePage;
+    public CheckoutStepTwoPage checkoutStepTwoPage;
+    public CheckoutCompletePage checkoutCompletePage;
+
     @BeforeClass
     public void setUp(){
         WebDriverManager.firefoxdriver().setup();
