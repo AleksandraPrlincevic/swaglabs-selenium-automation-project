@@ -39,7 +39,6 @@ public class CartTest extends BaseTest {
         checkoutCompletePage = new CheckoutCompletePage(driver);
 
         loginPage.login(TestData.validUsername, TestData.validPassword);
-        // inventoryPage.getRandomItem();
 
         WebElement randomItem = inventoryPage.getRandomItem();
         inventoryItemComponent = new InventoryItemComponent(driver, randomItem);
@@ -48,7 +47,7 @@ public class CartTest extends BaseTest {
         System.out.println("FIRST: " + itemName);
         inventoryItemComponent.clickAddToCartButton();
 
-        WebElement randomItem2;
+        WebElement randomItem2;           //padali su testovi ponekd jer se desi da izabere dva ista random itema: addToCartButton postane removeButton i item ne moze da se doda po drugi put
         do {
             randomItem2 = inventoryPage.getRandomItem();
         } while (randomItem2.equals(randomItem));
@@ -63,12 +62,12 @@ public class CartTest extends BaseTest {
           Assert.assertTrue(headerPage.getPageTitle().contains("Cart"));
     }
 
-   /* @Test
+    @Test
     public void deleteAllItemsFromCart(){
         cartPage.removeAllItemsFromCart();
           Assert.assertFalse(headerPage.isCartBadgeVisible());
 
-    }*/
+    }
 
     @Test
     public void finishOrderFromCartPageWithTwoItemsInCart(){
@@ -92,18 +91,18 @@ public class CartTest extends BaseTest {
             Assert.assertFalse(headerPage.isCartBadgeVisible());
     }
 
-    /*@Test
+    @Test
     public void checkoutWithEmptyCart() {  // Test pada jer mozemo da kliknemo na Checkout i on nas vodi na CheckoutStepTwoPage, iako ne bi smelo jer je korpa prazna
         cartPage.removeAllItemsFromCart();
         Assert.assertFalse(headerPage.isCartBadgeVisible());
         cartPage.clickCheckoutButton();
-        Assert.assertFalse(checkoutStepOnePage.);
+       // Assert.assertFalse(checkoutStepOnePage.);
     }
      @Test
      public void increaseCartItemQuantityByInput(){ //  Test pada jer ne moze da se promeni kolicina itema u Cartu, a trebalo bi da moze
         cartPage.changeCartQuantity();
         //DODATI ASERTACIJU
-     }*/
+     }
     @AfterMethod
     public void deleteCookies(){
         driver.manage().deleteAllCookies();

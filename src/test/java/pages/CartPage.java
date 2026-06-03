@@ -34,6 +34,7 @@ public class CartPage extends BasePage {
     public List<WebElement> getItemPrices(){
         return driver.findElements(By.className("inventory_item_price"));
     }
+
     public List<String> getItemPricesText(){
         List<String> prices = new ArrayList<>();
         for(WebElement e: getItemPrices()){
@@ -43,6 +44,7 @@ public class CartPage extends BasePage {
     public List<WebElement> getItemNames(){
         return driver.findElements(By.className("inventory_item_name"));
     }
+
     public List<String> getItemNamesText(){
         List<String> names = new ArrayList<>();
         for(WebElement e: getItemNames()){

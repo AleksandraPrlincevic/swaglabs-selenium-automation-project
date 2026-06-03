@@ -53,6 +53,48 @@ public class AddingItemsTest extends BaseTest {
            Assert.assertEquals(cartPage.getItemInCartPrice(), itemPrice);
     }
 
+    @Test(priority = 2)
+    public void addThreeItemsFromInventoryPage() throws InterruptedException {
+
+        Assert.assertFalse(inventoryPage.getInventoryItems().isEmpty());
+        Assert.assertFalse(headerPage.isCartBadgeVisible());
+
+        WebElement randomItem = inventoryPage.getRandomItem();
+        inventoryItemComponent = new InventoryItemComponent(driver, randomItem);
+        String itemName = inventoryItemComponent.getItemName();
+        String itemPrice =inventoryItemComponent.getItemPrice();
+        inventoryItemComponent.clickAddToCartButton();
+
+        WebElement randomItem2;
+        do {
+            randomItem2 = inventoryPage.getRandomItem();
+        } while (randomItem2.equals(randomItem));
+        inventoryItemComponent = new InventoryItemComponent(driver, randomItem2);
+        String itemName2 = inventoryItemComponent.getItemName();
+        String itemPrice2 =inventoryItemComponent.getItemPrice();
+        inventoryItemComponent.clickAddToCartButton();
+
+        WebElement randomItem3;
+        do {
+            randomItem3 = inventoryPage.getRandomItem();
+        } while (randomItem3.equals(randomItem) || randomItem3.equals(randomItem2));
+        inventoryItemComponent = new InventoryItemComponent(driver, randomItem3);
+        String itemName3 = inventoryItemComponent.getItemName();
+        String itemPrice3 =inventoryItemComponent.getItemPrice();
+        inventoryItemComponent.clickAddToCartButton();
+
+           Assert.assertTrue(headerPage.isCartBadgeVisible());
+           Assert.assertEquals(headerPage.getNumberInBadge(), 3);
+        headerPage.clickCartIcon();
+           Assert.assertTrue(cartPage.isCheckoutButtonDisplayed());
+           System.out.println("EXPECTED: " + itemName + ", " +itemName2+", "+ itemName3);
+           System.out.println("ACTUAL: " + cartPage.getItemInCartName());
+
+           Assert.assertTrue(cartPage.getItemNamesText().contains(itemName) &&
+                cartPage.getItemNamesText().contains(itemName2) && cartPage.getItemNamesText().contains(itemName3));
+           Assert.assertTrue(cartPage.getItemPricesText().contains(itemPrice)&& cartPage.getItemPricesText().contains(itemPrice2)&& cartPage.getItemPricesText().contains(itemPrice3));
+    }
+
       @Test(priority = 5)
        public void addItemFromSingleItemPage(){
            Assert.assertFalse(inventoryPage.getInventoryItems().isEmpty());
