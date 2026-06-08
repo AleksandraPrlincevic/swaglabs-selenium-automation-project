@@ -21,9 +21,6 @@ public class InventoryPage extends BasePage {
     //-----------------------Lokatori--------------------
 
 
-   //indBy(id="add-to-cart-sauce-labs-backpack")
-    //public  WebElement addToCartButtonBackpack;  //sta kad taj backpack prestane da se prodaje?
-
     @FindBy(css=".btn.btn_primary.btn_small.btn_inventory")
     public WebElement addToCartButton;
 

@@ -36,8 +36,8 @@ public class AddingItemsTest extends BaseTest {
     @Test(priority = 1)
     public void addOneItemFromInventoryPage() throws InterruptedException {
 
-         Assert.assertFalse(inventoryPage.getInventoryItems().isEmpty());
-         Assert.assertFalse(headerPage.isCartBadgeVisible());
+           Assert.assertFalse(inventoryPage.getInventoryItems().isEmpty());
+           Assert.assertFalse(headerPage.isCartBadgeVisible());
          WebElement randomItem = inventoryPage.getRandomItem();
          inventoryItemComponent = new InventoryItemComponent(driver, randomItem);
            String itemName = inventoryItemComponent.getItemName();
@@ -91,7 +91,7 @@ public class AddingItemsTest extends BaseTest {
            System.out.println("ACTUAL: " + cartPage.getItemInCartName());
 
            Assert.assertTrue(cartPage.getItemNamesText().contains(itemName) &&
-                cartPage.getItemNamesText().contains(itemName2) && cartPage.getItemNamesText().contains(itemName3));
+        cartPage.getItemNamesText().contains(itemName2) && cartPage.getItemNamesText().contains(itemName3));
            Assert.assertTrue(cartPage.getItemPricesText().contains(itemPrice)&& cartPage.getItemPricesText().contains(itemPrice2)&& cartPage.getItemPricesText().contains(itemPrice3));
     }
 

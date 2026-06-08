@@ -1,7 +1,7 @@
-# SwagLabs Selenium Automation project
+# SauceDemo Selenium Automation project
 
 ## Description:
-Swag Labs is a testing website. This project is the result of a three-month intensive QA course. 
+SauceFemo is a testing website. This project is the result of a three-month intensive QA course. 
 After completing manual testing and bug reporting, I selected several test cases for automation.
 
 
