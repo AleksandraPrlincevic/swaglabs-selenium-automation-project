@@ -1,7 +1,7 @@
 # SauceDemo Selenium Automation project
 
 ## Description:
-SauceFemo is a testing website. This project is the result of a three-month intensive QA course. 
+SauceDemo is a testing website. This project is the result of a three-month intensive QA course. 
 After completing manual testing and bug reporting, I selected several test cases for automation.
 
 
