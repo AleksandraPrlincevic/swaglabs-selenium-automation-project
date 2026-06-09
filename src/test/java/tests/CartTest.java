@@ -14,6 +14,8 @@ import pages.*;
 import utils.TestData;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CartTest extends BaseTest {
 
@@ -21,6 +23,7 @@ public class CartTest extends BaseTest {
     String itemPrice;
     String itemName2;
     String itemPrice2;
+    private List<WebElement> chosenRandomItems;
 
     @BeforeMethod
     public void testSetUp() throws InterruptedException {
@@ -39,23 +42,18 @@ public class CartTest extends BaseTest {
 
         loginPage.login(TestData.validUsername, TestData.validPassword);
 
-        WebElement randomItem = inventoryPage.getRandomItem();
-        inventoryItemComponent = new InventoryItemComponent(driver, randomItem);
-        itemName = inventoryItemComponent.getItemName();
-        itemPrice = inventoryItemComponent.getItemPrice();
+        List<WebElement> chosenRandomItems = new ArrayList<>();
+        InventoryItemComponent item = inventoryPage.getInventoryItemComponent(chosenRandomItems);
+        itemName = item.getItemName();
+        itemPrice = item.getItemPrice();
         System.out.println("FIRST: " + itemName);
-        inventoryItemComponent.clickAddToCartButton();
+        item.clickAddToCartButton();
 
-        WebElement randomItem2;        //padali su testovi ponekad jer se desi da izabere dva ista random itema: addToCartButton postane removeButton i item ne moze da se doda po drugi put
-        do {
-            randomItem2 = inventoryPage.getRandomItem();
-        } while (randomItem2.equals(randomItem));
-
-        inventoryItemComponent = new InventoryItemComponent(driver, randomItem2);
-        itemName2 = inventoryItemComponent.getItemName();
-        itemPrice2 = inventoryItemComponent.getItemPrice();
+        InventoryItemComponent item2 = inventoryPage.getInventoryItemComponent(chosenRandomItems);
+        itemName2 = item2.getItemName();
+        itemPrice2 = item2.getItemPrice();
         System.out.println("SECOND: " + itemName2);
-        inventoryItemComponent.clickAddToCartButton();
+        item2.clickAddToCartButton();
 
         headerPage.clickCartIcon();
           Assert.assertTrue(headerPage.getPageTitle().contains("Cart"));
@@ -65,7 +63,7 @@ public class CartTest extends BaseTest {
     public void deleteAllItemsFromCart(){
         cartPage.removeAllItemsFromCart();
           Assert.assertFalse(headerPage.isCartBadgeVisible());
-
+         // Assert.assertTrue();
     }
 
     @Test
