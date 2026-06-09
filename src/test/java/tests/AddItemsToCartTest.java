@@ -14,8 +14,12 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
-public class AddingItemsTest extends BaseTest {
+public class AddItemsToCartTest extends BaseTest {
+
+    List<WebElement> chosenRandomItems;
 
     @BeforeMethod
     public void testSetUp() throws InterruptedException {
@@ -23,6 +27,7 @@ public class AddingItemsTest extends BaseTest {
         shortWait = new WebDriverWait(driver, Duration.ofSeconds(5));
         driver.manage().window().maximize();
         driver.navigate().to("https://www.saucedemo.com/");
+        chosenRandomItems = new ArrayList<>();
 
         loginPage = new LoginPage(driver);
         inventoryPage = new InventoryPage(driver);
@@ -34,17 +39,15 @@ public class AddingItemsTest extends BaseTest {
  }
     @Test(priority = 1)
     public void addOneItemFromInventoryPage() throws InterruptedException {
-
            Assert.assertFalse(inventoryPage.getInventoryItems().isEmpty());
            Assert.assertFalse(headerPage.isCartBadgeVisible());
-         WebElement randomItem = inventoryPage.getRandomItem();
-         inventoryItemComponent = new InventoryItemComponent(driver, randomItem);
-           String itemName = inventoryItemComponent.getItemName();
-           String itemPrice =inventoryItemComponent.getItemPrice();
-         inventoryItemComponent.clickAddToCartButton();
+        InventoryItemComponent item = inventoryPage.getInventoryItemComponent(chosenRandomItems);
+           String itemName = item.getItemName();
+           String itemPrice =item.getItemPrice();
+        item.clickAddToCartButton();
            Assert.assertTrue(headerPage.isCartBadgeVisible());
            Assert.assertEquals(headerPage.getNumberInBadge(), 1);
-         headerPage.clickCartIcon();
+        headerPage.clickCartIcon();
            Assert.assertTrue(cartPage.isCheckoutButtonDisplayed());
            System.out.println("EXPECTED: " + itemName);
            System.out.println("ACTUAL: " + cartPage.getItemInCartName());
@@ -54,33 +57,24 @@ public class AddingItemsTest extends BaseTest {
 
     @Test(priority = 2)
     public void addThreeItemsFromInventoryPage() throws InterruptedException {
+        List<WebElement> chosenRandomItems = new ArrayList<>();
+           Assert.assertFalse(inventoryPage.getInventoryItems().isEmpty());
+           Assert.assertFalse(headerPage.isCartBadgeVisible());
 
-        Assert.assertFalse(inventoryPage.getInventoryItems().isEmpty());
-        Assert.assertFalse(headerPage.isCartBadgeVisible());
+        InventoryItemComponent item = inventoryPage.getInventoryItemComponent(chosenRandomItems);
+        String itemName = item.getItemName();
+        String itemPrice =item.getItemPrice();
+        item.clickAddToCartButton();
 
-        WebElement randomItem = inventoryPage.getRandomItem();
-        inventoryItemComponent = new InventoryItemComponent(driver, randomItem);
-        String itemName = inventoryItemComponent.getItemName();
-        String itemPrice =inventoryItemComponent.getItemPrice();
-        inventoryItemComponent.clickAddToCartButton();
+        InventoryItemComponent item2 = inventoryPage.getInventoryItemComponent(chosenRandomItems);
+        String itemName2 = item.getItemName();
+        String itemPrice2 =item.getItemPrice();
+        item2.clickAddToCartButton();
 
-        WebElement randomItem2;  //prebaciti u  Inventory ili InventoryItemComponent
-        do {
-            randomItem2 = inventoryPage.getRandomItem();
-        } while (randomItem2.equals(randomItem));
-        inventoryItemComponent = new InventoryItemComponent(driver, randomItem2);
-        String itemName2 = inventoryItemComponent.getItemName();
-        String itemPrice2 =inventoryItemComponent.getItemPrice();
-        inventoryItemComponent.clickAddToCartButton();
-
-        WebElement randomItem3;
-        do {
-            randomItem3 = inventoryPage.getRandomItem();
-        } while (randomItem3.equals(randomItem) || randomItem3.equals(randomItem2));
-        inventoryItemComponent = new InventoryItemComponent(driver, randomItem3);
-        String itemName3 = inventoryItemComponent.getItemName();
-        String itemPrice3 =inventoryItemComponent.getItemPrice();
-        inventoryItemComponent.clickAddToCartButton();
+        InventoryItemComponent item3 = inventoryPage.getInventoryItemComponent(chosenRandomItems);
+        String itemName3 = item.getItemName();
+        String itemPrice3 =item.getItemPrice();
+        item3.clickAddToCartButton();
 
            Assert.assertTrue(headerPage.isCartBadgeVisible());
            Assert.assertEquals(headerPage.getNumberInBadge(), 3);
@@ -97,11 +91,10 @@ public class AddingItemsTest extends BaseTest {
       @Test(priority = 5)
        public void addItemFromSingleItemPage(){
            Assert.assertFalse(inventoryPage.getInventoryItems().isEmpty());
-        WebElement randomItem = inventoryPage.getRandomItem();
-        InventoryItemComponent inventoryItemComponent = new InventoryItemComponent(driver, randomItem);
-           String itemName = inventoryItemComponent.getItemName();
-           String itemPrice =inventoryItemComponent.getItemPrice();
-        inventoryItemComponent.clickItemNameLink();
+        InventoryItemComponent item = inventoryPage.getInventoryItemComponent(chosenRandomItems);
+        String itemName = item.getItemName();
+        String itemPrice =item.getItemPrice();
+        item.clickItemNameLink();
         shortWait.until(ExpectedConditions.elementToBeClickable(singleItemPage.addToCartButton));
            Assert .assertEquals(singleItemPage.getSingleItemName(), itemName);
            Assert .assertEquals(singleItemPage.getSingleItemPrice(), itemPrice);
