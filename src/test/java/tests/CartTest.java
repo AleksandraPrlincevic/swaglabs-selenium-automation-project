@@ -46,13 +46,11 @@ public class CartTest extends BaseTest {
         InventoryItemComponent item = inventoryPage.getInventoryItemComponent(chosenRandomItems);
         itemName = item.getItemName();
         itemPrice = item.getItemPrice();
-        System.out.println("FIRST: " + itemName);
         item.clickAddToCartButton();
 
         InventoryItemComponent item2 = inventoryPage.getInventoryItemComponent(chosenRandomItems);
         itemName2 = item2.getItemName();
         itemPrice2 = item2.getItemPrice();
-        System.out.println("SECOND: " + itemName2);
         item2.clickAddToCartButton();
 
         headerPage.clickCartIcon();
@@ -63,7 +61,7 @@ public class CartTest extends BaseTest {
     public void deleteAllItemsFromCart(){
         cartPage.removeAllItemsFromCart();
           Assert.assertFalse(headerPage.isCartBadgeVisible());
-         // Assert.assertTrue();
+          Assert.assertTrue(cartPage.getItemNames().isEmpty());
     }
 
     @Test
