@@ -38,7 +38,7 @@ public class InventoryPage extends BasePage {
 
       WebElement randomItem;
       //WebElement randomItemLink;
-      ArrayList<WebElement> chosenRandomItems = new ArrayList<>();
+      List<WebElement> chosenRandomItems = new ArrayList<>();
 
       public  List<WebElement> getInventoryItems(){
           return driver.findElements(By.className("inventory_item"));
@@ -54,34 +54,13 @@ public class InventoryPage extends BasePage {
           return  randomItem;
      }
 
-    public InventoryItemComponent getInventoryItemComponent(){
-          randomItem = getRandomItem();
-        return new InventoryItemComponent(driver, randomItem);
-    }
-
-    public InventoryItemComponent getDifferentInventoryItemComponent(ArrayList<WebElement> chosenRandomItems){
+    public InventoryItemComponent getInventoryItemComponent(List<WebElement> chosenRandomItems){
         WebElement newRandomItem;
         do {
             newRandomItem = getRandomItem();
         } while (chosenRandomItems.contains(newRandomItem));
+         chosenRandomItems.add(newRandomItem);
          return new InventoryItemComponent(driver, newRandomItem);
     }
 
-
-    /* public WebElement getRandomAddToCartButton(){
-         randomItem = getRandomItem();
-         return randomItem.findElement(By.cssSelector(".btn.btn_primary.btn_small.btn_inventory"));
-     }
-     public void clickRandomAddToCartButton(){
-         WebElement button = getRandomAddToCartButton();
-         wait.until(ExpectedConditions.elementToBeClickable(button));
-       button.click();
-     }
-     public WebElement getRandomItemLink(){  // pokusavam da izvucem i link sa nazivom itema ali nije ovo najbolje resenje
-          if(randomItem==null) {
-              throw new IllegalStateException("RandomItem IS NOT initialized");
-          } else{
-              randomItemLink = randomItem.findElement(By.className("inventory_item_label"));
-          }return randomItemLink;
-     }*/
 }
