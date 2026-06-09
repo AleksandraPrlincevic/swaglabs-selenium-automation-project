@@ -19,7 +19,7 @@ import java.util.List;
 
 public class AddItemsToCartTest extends BaseTest {
 
-    List<WebElement> chosenRandomItems;
+    private List<WebElement> chosenRandomItems;
 
     @BeforeMethod
     public void testSetUp() throws InterruptedException {

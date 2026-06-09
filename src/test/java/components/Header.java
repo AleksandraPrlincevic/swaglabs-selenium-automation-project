@@ -26,7 +26,6 @@ public class Header extends BasePage {
     @FindBy(id="react-burger-menu-btn")
     public WebElement burgerMenu;
 
-   // @FindBy(className = "title")
 
  //-----------------------------------Metode za testiranja-----------------------
 

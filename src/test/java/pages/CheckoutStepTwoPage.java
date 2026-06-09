@@ -14,6 +14,7 @@ public class CheckoutStepTwoPage extends BasePage {
         super(driver);
     }
    WebElement randomItem;
+
     //---------------------------geteri za elemente  s lokatorima------------------------
 
     public WebElement getFinishButton(){
@@ -51,13 +52,12 @@ public class CheckoutStepTwoPage extends BasePage {
     public String getItemPriceFromTotalText(){
         return getItemPriceFromTotal().getText();
     }
+
     //--------------------------metode za testiranje--------------------
 
     public void clickFinishButton(){
         getFinishButton().click();
     }
-
-
 
     public WebElement getRandomItem(){
         Random randomIndex = new Random();

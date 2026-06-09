@@ -34,11 +34,9 @@ public class InventoryPage extends BasePage {
 
 
     //-----------------------------------Metode za testiranje---------------
-    //----metode za pronalazanje randomItem(sada randomAddToCartButton,ostale elemente, metode vezane uz njih pravimo u novoj klasi InventoryItemComponent-----
 
       WebElement randomItem;
       //WebElement randomItemLink;
-      List<WebElement> chosenRandomItems = new ArrayList<>();
 
       public  List<WebElement> getInventoryItems(){
           return driver.findElements(By.className("inventory_item"));
@@ -50,7 +48,6 @@ public class InventoryPage extends BasePage {
           //System.out.println("RANDOM INDEX = " + index);
           //System.out.println("SIZE = " + getInventoryItems().size());
           randomItem = getInventoryItems().get(index);
-          chosenRandomItems.add(randomItem);
           return  randomItem;
      }
 

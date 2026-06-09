@@ -3,7 +3,6 @@ package tests;
 import base.BaseTest;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import utils.TestData;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -48,7 +47,6 @@ public void validLoginTest() {
 
     Assert.assertTrue(headerPage.cartIcon.isDisplayed());
 
-    //Assert.assertTrue(inventoryPage.addToCartButtonBackpack.isDisplayed());  // sta kad item prestane da se prodaje?
     Assert.assertEquals(inventoryPage.addToCartButton.getText(), "Add to cart");
 }
     @Test(priority = 10)
@@ -60,13 +58,11 @@ public void validLoginTest() {
         loginPage.inputInPasswordField(TestData.validPassword);
         loginPage.clickLoginButton();
 
-
         String actualURL = driver.getCurrentUrl();
         String expectedURL = "https://www.saucedemo.com/";
         Assert.assertEquals(actualURL, expectedURL);
 
         Assert.assertTrue(loginPage.errorMessage.isDisplayed());
-
         Assert.assertTrue(loginPage.loginButton.isDisplayed());
     }
 
@@ -79,15 +75,14 @@ public void validLoginTest() {
         loginPage.inputInPasswordField(TestData.invalidPassword);
         loginPage.clickLoginButton();
 
-
         String actualURL = driver.getCurrentUrl();
         String expectedURL = "https://www.saucedemo.com/";
         Assert.assertEquals(actualURL, expectedURL);
 
         Assert.assertTrue(loginPage.errorMessage.isDisplayed());
-
         Assert.assertTrue(loginPage.loginButton.isDisplayed());
     }
+
     @Test(priority = 22)
     public void emptyUsernameLoginTest() {
 
@@ -97,15 +92,14 @@ public void validLoginTest() {
         loginPage.inputInPasswordField(TestData.validPassword);
         loginPage.clickLoginButton();
 
-
         String actualURL = driver.getCurrentUrl();
         String expectedURL = "https://www.saucedemo.com/";
         Assert.assertEquals(actualURL, expectedURL);
 
         Assert.assertTrue(loginPage.errorMessage.isDisplayed());
-
         Assert.assertTrue(loginPage.loginButton.isDisplayed());
     }
+
     @Test(priority = 24)
     public void emptyPasswordLoginTest() {
 
@@ -115,13 +109,11 @@ public void validLoginTest() {
         loginPage.inputInPasswordField("");
         loginPage.clickLoginButton();
 
-
         String actualURL = driver.getCurrentUrl();
         String expectedURL = "https://www.saucedemo.com/";
         Assert.assertEquals(actualURL, expectedURL);
 
         Assert.assertTrue(loginPage.errorMessage.isDisplayed());
-
         Assert.assertTrue(loginPage.loginButton.isDisplayed());
     }
 
@@ -134,13 +126,11 @@ public void validLoginTest() {
         loginPage.inputInPasswordField("");
         loginPage.clickLoginButton();
 
-
         String actualURL = driver.getCurrentUrl();
         String expectedURL = "https://www.saucedemo.com/";
         Assert.assertEquals(actualURL, expectedURL);
 
         Assert.assertTrue(loginPage.errorMessage.isDisplayed());
-
         Assert.assertTrue(loginPage.loginButton.isDisplayed());
     }
 

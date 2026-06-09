@@ -34,6 +34,7 @@ public class CheckoutStepOnePage extends BasePage {
     public WebElement getContinueButton(){
        return driver.findElement(By.id("continue"));
     }
+
 //----------------------metode za testiranje ------------------------------
 
     public  boolean isCheckoutInfoContainer(){

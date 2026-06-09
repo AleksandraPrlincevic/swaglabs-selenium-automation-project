@@ -55,6 +55,7 @@ public class CartPage extends BasePage {
     public WebElement getCartQuantityBox(){
         return driver.findElement(By.className("cart_quantity"));
     }
+
     //----------------------Metode za testiranje-----------------
 
     public boolean isCheckoutButtonDisplayed() {

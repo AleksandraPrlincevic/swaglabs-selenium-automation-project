@@ -13,6 +13,7 @@ public class InventoryItemComponent extends BasePage {
         super(driver);
         this.root = root;
     }
+
     //------------------------------get metode sa Lokatorimai--------------------------
 
     public WebElement getAddToCartButton(){
@@ -26,6 +27,7 @@ public class InventoryItemComponent extends BasePage {
     public WebElement getItemPriceBox(){
         return root.findElement(By.className("inventory_item_price"));
     }
+
     //------------------------------Metode za testiranje------------------------------------
 
     public void clickAddToCartButton() {
@@ -37,7 +39,6 @@ public class InventoryItemComponent extends BasePage {
         getItemNameLink().click();
     }
     public String getItemName(){
-        //wait.until(ExpectedConditions.elementToBeClickable(itemNameLink));
         return getItemNameLink().getText();
     }
    /*public String getItemImageSrc(){     //ovo mi ne treba za asertaciju ovde

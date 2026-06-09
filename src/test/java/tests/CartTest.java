@@ -46,7 +46,7 @@ public class CartTest extends BaseTest {
         System.out.println("FIRST: " + itemName);
         inventoryItemComponent.clickAddToCartButton();
 
-        WebElement randomItem2;           //padali su testovi ponekad jer se desi da izabere dva ista random itema: addToCartButton postane removeButton i item ne moze da se doda po drugi put
+        WebElement randomItem2;        //padali su testovi ponekad jer se desi da izabere dva ista random itema: addToCartButton postane removeButton i item ne moze da se doda po drugi put
         do {
             randomItem2 = inventoryPage.getRandomItem();
         } while (randomItem2.equals(randomItem));
