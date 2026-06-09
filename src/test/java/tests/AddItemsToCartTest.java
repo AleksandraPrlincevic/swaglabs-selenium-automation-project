@@ -13,7 +13,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import java.time.Duration;
 
 public class AddingItemsTest extends BaseTest {
@@ -23,7 +22,7 @@ public class AddingItemsTest extends BaseTest {
         driver = new FirefoxDriver();
         shortWait = new WebDriverWait(driver, Duration.ofSeconds(5));
         driver.manage().window().maximize();
-        driver.navigate().to("https://www.saucedemo.com/");  //VIDI MANUELNI ODAKLE KRECE
+        driver.navigate().to("https://www.saucedemo.com/");
 
         loginPage = new LoginPage(driver);
         inventoryPage = new InventoryPage(driver);
@@ -45,7 +44,7 @@ public class AddingItemsTest extends BaseTest {
          inventoryItemComponent.clickAddToCartButton();
            Assert.assertTrue(headerPage.isCartBadgeVisible());
            Assert.assertEquals(headerPage.getNumberInBadge(), 1);
-        headerPage.clickCartIcon();
+         headerPage.clickCartIcon();
            Assert.assertTrue(cartPage.isCheckoutButtonDisplayed());
            System.out.println("EXPECTED: " + itemName);
            System.out.println("ACTUAL: " + cartPage.getItemInCartName());
@@ -65,7 +64,7 @@ public class AddingItemsTest extends BaseTest {
         String itemPrice =inventoryItemComponent.getItemPrice();
         inventoryItemComponent.clickAddToCartButton();
 
-        WebElement randomItem2;
+        WebElement randomItem2;  //prebaciti u  Inventory ili InventoryItemComponent
         do {
             randomItem2 = inventoryPage.getRandomItem();
         } while (randomItem2.equals(randomItem));

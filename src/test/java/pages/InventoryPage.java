@@ -1,6 +1,8 @@
 package pages;
 
 import base.BasePage;
+import com.sun.jna.WString;
+import components.InventoryItemComponent;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -35,22 +37,35 @@ public class InventoryPage extends BasePage {
     //----metode za pronalazanje randomItem(sada randomAddToCartButton,ostale elemente, metode vezane uz njih pravimo u novoj klasi InventoryItemComponent-----
 
       WebElement randomItem;
-      WebElement randomItemLink;
+      //WebElement randomItemLink;
+      ArrayList<WebElement> chosenRandomItems = new ArrayList<>();
 
       public  List<WebElement> getInventoryItems(){
-
           return driver.findElements(By.className("inventory_item"));
       }
 
       public WebElement getRandomItem(){
           Random randomIndex = new Random();
           int index = randomIndex.nextInt(getInventoryItems().size());
-          System.out.println("RANDOM INDEX = " + index);
-          System.out.println("SIZE = " + getInventoryItems().size());
+          //System.out.println("RANDOM INDEX = " + index);
+          //System.out.println("SIZE = " + getInventoryItems().size());
           randomItem = getInventoryItems().get(index);
+          chosenRandomItems.add(randomItem);
           return  randomItem;
      }
 
+    public InventoryItemComponent getInventoryItemComponent(){
+          randomItem = getRandomItem();
+        return new InventoryItemComponent(driver, randomItem);
+    }
+
+    public InventoryItemComponent getDifferentInventoryItemComponent(ArrayList<WebElement> chosenRandomItems){
+        WebElement newRandomItem;
+        do {
+            newRandomItem = getRandomItem();
+        } while (chosenRandomItems.contains(newRandomItem));
+         return new InventoryItemComponent(driver, newRandomItem);
+    }
 
 
     /* public WebElement getRandomAddToCartButton(){
